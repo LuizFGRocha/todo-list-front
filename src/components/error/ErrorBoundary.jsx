@@ -1,6 +1,4 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useSessionContext } from '../../auth/authProvider';
 
 class ErrorBoundary extends React.Component {
   

@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
 
 const TaskListCardHeader = ({
   editMode,
@@ -17,13 +16,6 @@ const TaskListCardHeader = ({
     const year = date.getFullYear();
     return `${day}/${month}/${year}`;
   };
-
-  const [ usingDate, setUsingDate ] = useState(taskList.date != null);
-
-  useEffect(() => {
-    if (!editMode)
-      setUsingDate(taskList.date != null);
-  });
 
   return (
     <div className="min-h-24 flex items-center pl-6 pr-2 py-3 bg-gray-900 justify-between">
