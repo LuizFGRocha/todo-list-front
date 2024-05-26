@@ -53,7 +53,7 @@ export const AuthProvider = () => {
         localStorage.removeItem('userId');
       }
     }
-  }, []);
+  }, [nav]);
 
   return (
     <AuthContext.Provider value={{ userId, login, logout }}>
