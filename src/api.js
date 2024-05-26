@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:3001",
+  baseURL: "https://todo-list-back.azurewebsites.net/",
   withCredentials: true,
 });
 
@@ -13,6 +13,18 @@ const cleanNullProperties = (obj) => {
     }
   }
   return newObj;
+}
+
+export const login = async (userData) => {
+  try {
+    const res = await api.post("/login", userData);
+    if (res.status === 400) {
+      return res;
+    }
+    return res;
+  } catch (error) {
+    throw error;
+  }
 }
 
 export const signup = async (userData) => {

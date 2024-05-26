@@ -3,7 +3,7 @@ import axios from "axios";
 import { Outlet } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import ErrorBoundary from "../components/error/ErrorBoundary";
-import { checkToken } from "../api";
+import { checkToken, login as apiLogin } from "../api";
 
 const AuthContext = createContext();
 
@@ -18,7 +18,7 @@ export const AuthProvider = () => {
 
     let res;
     try {
-      res = await axios.post('http://localhost:3001/login', { username, password }, { withCredentials: true });
+      res = await apiLogin({ username, password });
     } catch (error) {
       throw error;
     }
