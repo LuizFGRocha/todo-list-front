@@ -21,52 +21,93 @@ export const signup = async (userData) => {
     if (res.status === 400) {
       return res.body;
     }
-    return res.data
+    return res.data;
   } catch (error) {
     throw error;
   }
 }
 
 export const getTaskLists = async (userId) => {
-  const res = await api.get(`/taskLists/${userId}`);
-  return res.data.taskLists;
+  try {
+    const res = await api.get(`/taskLists/${userId}`);
+    return res.data.taskLists;
+  } catch (error) {
+    throw error;
+  }
 };
 
 export const createTaskList = async (userId, taskListData) => {
-  taskListData = cleanNullProperties(taskListData);
-  const res = await api.post(`/taskList/${userId}`, taskListData);
-  return res.data;
+  try {
+    taskListData = cleanNullProperties(taskListData);
+    const res = await api.post(`/taskList/${userId}`, taskListData);
+    return res.data;
+  } catch (error) {
+    throw error;
+  }
 };
 
 export const getTaskList = async (taskListId) => {
-  const res = await api.get(`/taskList/${taskListId}`);
-  return res.data.taskList;
+  try {
+    const res = await api.get(`/taskList/${taskListId}`);
+    return res.data.taskList;
+  } catch (error) {
+    throw error;
+  }
 };
 
 export const deleteTaskList = async (taskListId) => {
-  const res = await api.delete(`/taskList/${taskListId}`);
-  return res.data;
+  try {
+    const res = await api.delete(`/taskList/${taskListId}`);
+    return res.data;
+  } catch (error) {
+    throw error;
+  }
 };
 
 export const updateTaskList = async (taskListId, taskListData) => {
-  taskListData = cleanNullProperties(taskListData);
-  const res = await api.put(`/taskList/${taskListId}`, taskListData);
-  return res.data;
+  try {
+    taskListData = cleanNullProperties(taskListData);
+    const res = await api.put(`/taskList/${taskListId}`, taskListData);
+    return res.data;
+  } catch (error) {
+    throw error;
+  }
 };
 
 export const createTask = async (taskListId, taskData) => {
-  taskData = cleanNullProperties(taskData);
-  const res = await api.post(`/task/${taskListId}`, taskData);
-  return res.data;
+  try {
+    taskData = cleanNullProperties(taskData);
+    const res = await api.post(`/task/${taskListId}`, taskData);
+    return res.data;
+  } catch (error) {
+    throw error;
+  }
 }
 
 export const updateTask = async (taskId, taskData) => {
-  taskData = cleanNullProperties(taskData);
-  const res = await api.put(`/task/${taskId}`, taskData);
-  return res.data;
+  try {
+    taskData = cleanNullProperties(taskData);
+    const res = await api.put(`/task/${taskId}`, taskData);
+    return res.data;
+  } catch (error) {
+    throw error;
+  }
 }
 
 export const deleteTask = async (taskId) => {
-  const res = await api.delete(`/task/${taskId}`);
-  return res.data;
+  try {
+    const res = await api.delete(`/task/${taskId}`);
+    return res.data;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export const checkToken = async (localUserId) => {
+  try {
+    const res = await api.get(`/checkToken/${localUserId}`);
+    return res;
+  } catch (error) {
+    throw error;
+  }
 }
