@@ -3,8 +3,7 @@ import { AuthProvider } from "./auth/authProvider";
 import Home from "./pages/home";
 import Login from "./pages/login";
 import Signup from "./pages/signup";
-import CreateTaskList from "./components/CreateTaskList";
-import TaskCard from "./components/TaskListCard";
+import CreateTaskList from "./pages/createTaskList";
 import TaskList from "./pages/tasklist";
 
 const router = createBrowserRouter([

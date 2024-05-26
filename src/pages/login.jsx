@@ -7,6 +7,8 @@ const Login = () => {
 
   const { login } = useSessionContext();
 
+  const [error, setError] = useState({message: "", status: false});
+
   const handleLogin = async (e) => {
     e.preventDefault();
     
@@ -14,6 +16,7 @@ const Login = () => {
       await login(credentials.username, credentials.password);
     } catch (error) {
       console.error(error);
+      setError({message: error.message, status: true});
     }
   };
 
@@ -32,7 +35,7 @@ const Login = () => {
               <input
                 className="block w-full px-4 py-2 mt-2 text-gray-700 dark:text-gray-300 placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
                 value={credentials.username}
-                onChange={(e) => setCredentials({ ...credentials, username: e.target.value })}
+                onChange={(e) => {setCredentials({ ...credentials, username: e.target.value }); setError({message: "", status: false});}}
                 type="text"
                 placeholder="Usuário"
                 aria-label="Usuário"
@@ -42,12 +45,13 @@ const Login = () => {
               <input
                 className="block w-full px-4 py-2 mt-2 text-gray-700 dark:text-gray-300 placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
                 value={credentials.password}
-                onChange={(e) => setCredentials({ ...credentials, password: e.target.value })}
+                onChange={(e) => {setCredentials({ ...credentials, password: e.target.value }); setError({message: "", status: false});}}
                 type="password"
                 placeholder="Senha"
                 aria-label="Senha"
               />
             </div>
+            {error.status && <p className="text-red-500 text-sm">{error.message}</p>}
             <div className="flex items-center justify-between mt-4">
               <button 
                 className="px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"

@@ -15,6 +15,18 @@ const cleanNullProperties = (obj) => {
   return newObj;
 }
 
+export const signup = async (userData) => {
+  try {
+    const res = await api.post("/signup", userData);
+    if (res.status === 400) {
+      return res.body;
+    }
+    return res.data
+  } catch (error) {
+    throw error;
+  }
+}
+
 export const getTaskLists = async (userId) => {
   const res = await api.get(`/taskLists/${userId}`);
   return res.data.taskLists;
@@ -22,7 +34,6 @@ export const getTaskLists = async (userId) => {
 
 export const createTaskList = async (userId, taskListData) => {
   taskListData = cleanNullProperties(taskListData);
-  console.log(taskListData);
   const res = await api.post(`/taskList/${userId}`, taskListData);
   return res.data;
 };
@@ -49,3 +60,13 @@ export const createTask = async (taskListId, taskData) => {
   return res.data;
 }
 
+export const updateTask = async (taskId, taskData) => {
+  taskData = cleanNullProperties(taskData);
+  const res = await api.put(`/task/${taskId}`, taskData);
+  return res.data;
+}
+
+export const deleteTask = async (taskId) => {
+  const res = await api.delete(`/task/${taskId}`);
+  return res.data;
+}

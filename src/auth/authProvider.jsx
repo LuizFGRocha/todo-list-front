@@ -11,21 +11,17 @@ export const AuthProvider = () => {
   const [ userId, setUserId ] = useState(null);
 
   const login = async (username, password) => {
-    console.log("Logando");
     let res;
     try {
       res = await axios.post('http://localhost:3001/login', { username, password }, { withCredentials: true });
     } catch (error) {
-      if (error.response) {
-        res = error.response;
-      } else {
-        throw error;
-      }
+      throw error;
     }
 
-    if (res.status === 200) {
-      console.log("UID setado");
+    if (res.status === 200 && res.data.uid) {
       setUserId(res.data.uid);
+    } else {
+      throw new Error("Erro ao obter ID do usuário");
     }
   };
 

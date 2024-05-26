@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { signup } from "../api";
 
 const Signup = () => {
   const [credentials, setCredentials] = useState({
@@ -9,13 +10,24 @@ const Signup = () => {
     confirmPassword: "",
   });
 
+  const [error, setError] = useState({message: "", status: false});
+
+  const nav = useNavigate();
+
   const handleSignup = async (e) => {
     e.preventDefault();
 
+    if (credentials.password !== credentials.confirmPassword) {
+      setError({message: "As senhas não coincidem", status: true});
+      return;
+    }
+
     try {
-      alert("Usuário criado com sucesso!");
+      await signup(credentials);
+      nav("/login");
     } catch (error) {
       console.error(error);
+      setError({message: error.message, status: true});
     }
   }
 
@@ -34,7 +46,7 @@ const Signup = () => {
               <input
                 className="block w-full px-4 py-2 mt-2 text-gray-700 dark:text-gray-300 placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
                 value={credentials.email}
-                onChange={(e) => setCredentials({ ...credentials, email: e.target.value })}
+                onChange={(e) => {setCredentials({ ...credentials, email: e.target.value }); setError({message: "", status: false});}}
                 type="email"
                 placeholder="E-mail"
                 aria-label="E-mail"
@@ -44,7 +56,7 @@ const Signup = () => {
               <input
                 className="block w-full px-4 py-2 mt-2 text-gray-700 dark:text-gray-300 placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
                 value={credentials.username}
-                onChange={(e) => setCredentials({ ...credentials, username: e.target.value })}
+                onChange={(e) => {setCredentials({ ...credentials, username: e.target.value }); setError({message: "", status: false});}}
                 type="text"
                 placeholder="Usuário"
                 aria-label="Usuário"
@@ -54,7 +66,7 @@ const Signup = () => {
               <input
                 className="block w-full px-4 py-2 mt-2 text-gray-700 dark:text-gray-300 placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
                 value={credentials.password}
-                onChange={(e) => setCredentials({ ...credentials, password: e.target.value })}
+                onChange={(e) => {setCredentials({ ...credentials, password: e.target.value }); setError({message: "", status: false});}}
                 type="password"
                 placeholder="Senha"
                 aria-label="Senha"
@@ -64,18 +76,19 @@ const Signup = () => {
               <input
                 className="block w-full px-4 py-2 mt-2 text-gray-700 dark:text-gray-300 placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
                 value={credentials.confirmPassword}
-                onChange={(e) => setCredentials({ ...credentials, confirmPassword: e.target.value })}
+                onChange={(e) => {setCredentials({ ...credentials, confirmPassword: e.target.value }); setError({message: "", status: false});}}
                 type="password"
                 placeholder="Confirmar senha"
                 aria-label="Confirmar senha"
               />
             </div>
+            {error.status && <p className="text-red-500 text-sm">{error.message}</p>}
             <div className="flex items-center justify-between mt-4">
               <button 
                 className="px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
                 onClick={handleSignup}
               >
-                Entrar
+                Criar
               </button>
             </div>
           </form>

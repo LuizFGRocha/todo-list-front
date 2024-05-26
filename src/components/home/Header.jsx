@@ -1,12 +1,12 @@
-import { Link } from "react-router-dom";
-import { useSessionContext } from "../auth/authProvider";
+import { useSessionContext } from "../../auth/authProvider";
+
 const Header = () => {
   const { logout } = useSessionContext();
   return (   
     <nav className="bg-white shadow dark:bg-gray-800 flex flex-row">
       <div className="flex items-center justify-between w-full p-4 mx-auto text-gray-600 capitalize dark:text-gray-300">
         <h1
-          className="text-gray-800 text-2xl transition-colors duration-300 transform dark:text-gray-200 mx-1.5 sm:mx-6"
+          className="text-gray-800 text-2xl text-bold transition-colors duration-300 transform dark:text-gray-200 mx-1.5 sm:mx-6"
         >
           To Do
         </h1>
