@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const TaskListCardHeader = ({
   editMode,
@@ -7,19 +8,27 @@ const TaskListCardHeader = ({
   editedTaskList,
   setEditedTaskList,
   handleTaskListDelete,
-  taskListId,
 }) => {
   const formatDate = (date) => {
     date = new Date(date);
+    date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
     const day = date.getDate();
     const month = date.getMonth() + 1;
     const year = date.getFullYear();
     return `${day}/${month}/${year}`;
   };
+
+  const [ usingDate, setUsingDate ] = useState(taskList.date != null);
+
+  useEffect(() => {
+    if (!editMode)
+      setUsingDate(taskList.date != null);
+  });
+
   return (
     <div className="min-h-24 flex items-center pl-6 pr-2 py-3 bg-gray-900 justify-between">
-      <div>
-        <div className="w-fit">
+      <div className="flex flex-col w-full">
+        <div className="">
           {" "}
           <h1
             className="text-2xl font-semibold text-gray-300 w-full"
@@ -28,7 +37,7 @@ const TaskListCardHeader = ({
             {taskList.name}
           </h1>
           <input
-            className="text-2xl font-semibold text-gray-300 bg-transparent w-full"
+            className="text-2xl font-semibold text-gray-300 bg-transparent w-full outline-none"
             hidden={!editMode}
             value={editedTaskList.name}
             onChange={(e) =>
@@ -45,7 +54,7 @@ const TaskListCardHeader = ({
         </h1>
 
         <input
-          className="text-lg text-gray-800 dark:text-gray-400 bg-transparent"
+          className="text-lg text-gray-800 dark:text-gray-400 bg-transparent w-full outline-none"
           hidden={!editMode}
           value={editedTaskList.description}
           onChange={(e) =>
@@ -56,17 +65,36 @@ const TaskListCardHeader = ({
           }
         />
 
-        <h1
-          className="text-md text-gray-400 text-semibold rounded-md w-fit"
-          style={{
-            backgroundColor:
-              new Date(taskList.date) > new Date() ? "transparent" : "#610000",
-            padding: new Date(taskList.date) > new Date() ? "0rem" : "0.25rem",
-          }}
-          hidden={taskList.date == null}
-        >
-          {formatDate(taskList.date)}
-        </h1>
+        <div className="flex flex-row gap-2">
+          <h1
+            className="text-md text-gray-400 text-semibold rounded-md w-fit"
+            style={{
+              backgroundColor:
+                new Date(taskList.date) > new Date() ? "transparent" : "#610000",
+              padding: new Date(taskList.date) > new Date() ? "0rem" : "0.25rem",
+            }}
+            hidden={taskList.date == null || editMode}
+          >
+            {formatDate(taskList.date)}
+          </h1>
+
+          <button
+            className="text-md text-gray-400 text-semibold rounded-md w-fit bg-transparent"
+            hidden={!editMode}
+            onClick={() => setEditedTaskList({ ...editedTaskList, removeDate: !editedTaskList.removeDate })}
+          >
+            {!editedTaskList.removeDate ? "Remover data" : "Adicionar data"}
+          </button>
+        </div>
+
+        <input 
+          className="text-md text-gray-400 text-semibold rounded-md w-fit bg-transparent"
+          type="date" 
+          hidden={!editMode || editedTaskList.removeDate} 
+          value={editedTaskList.date || new Date()} 
+          onChange={(e) => setEditedTaskList({ ...editedTaskList, date: e.target.value })} 
+        />
+
       </div>
 
       <div className="flex flex-row-reverse gap-4">

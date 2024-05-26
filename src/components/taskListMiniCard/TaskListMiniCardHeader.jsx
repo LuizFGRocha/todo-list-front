@@ -2,6 +2,7 @@ const TaskListMiniCardHeader = ({ name, date, description }) => {
   
   const formatDate = (date) => {
     date = new Date(date);
+    date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
     const day = date.getDate();
     const month = date.getMonth() + 1;
     const year = date.getFullYear();
@@ -20,7 +21,7 @@ const TaskListMiniCardHeader = ({ name, date, description }) => {
           style={
             {
               backgroundColor: (new Date(date) > new Date()) ? 'transparent' : '#610000',
-              padding: (new Date(date) > new Date()) ? '0rem 0rem 0rem 0.5rem' : '0.25rem 0.5rem',
+              padding: (new Date(date) > new Date()) ? '0rem 0rem 0.5rem 0.5rem' : '0.25rem 0.5rem',
             }
           }
           hidden={date == null}

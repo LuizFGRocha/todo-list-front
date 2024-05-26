@@ -15,11 +15,12 @@ const TaskList = () => {
   const taskListId = useParams().id
 
   const [ taskList, setTaskList ] = useState({ name: "", description: "", date: new Date(), tasks: [] });
-  const [ editedTaskList, setEditedTaskList ] = useState({ name: "", description: "", date: new Date(), tasks: [] });
+  const [ editedTaskList, setEditedTaskList ] = useState({ name: "", description: "", date: new Date(), removeDate: false});
   const [ editMode, setEditMode ] = useState(false);
   const [ addingTask, setAddingTask ] = useState(false);
   const [ newTask, setNewTask ] = useState({ title: "", completed: false });
   const [ toBeRemovedTasks, setToBeRemovedTasks ] = useState([]);
+  const [ toBeEditedTasks, setToBeEditedTasks ] = useState({});
 
   const nav = useNavigate();
 
@@ -28,6 +29,8 @@ const TaskList = () => {
       getTaskList(taskListId).then((taskLists) => {
         setTaskList(taskLists);
         setEditedTaskList(taskLists);
+        if (!taskLists.date)
+          setEditedTaskList({ ...taskLists, removeDate: true });
       });
     } catch (error) {
       console.error(error);
@@ -40,22 +43,31 @@ const TaskList = () => {
   useEffect(() => setToBeRemovedTasks([]), [editMode]);
 
   const handleInsert = (e) => {
-    createTask(taskListId, newTask).then(() => {
-      setNewTask({ title: "", completed: false });
-      refreshHome();
-      setAddingTask(false);
-      getTaskList(taskListId).then((taskLists) => {
-        setTaskList(taskLists);
-        setEditedTaskList(taskLists);
+    try {
+      createTask(taskListId, newTask).then(() => {
+        setNewTask({ title: "", completed: false });
+        refreshHome();
+        setAddingTask(false);
+        getTaskList(taskListId).then((taskLists) => {
+          setTaskList(taskLists);
+          setEditedTaskList(taskLists);
+        });
       });
-    });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleEdit = async (e) => {
     try {
+      for (const taskId in toBeEditedTasks) {
+        await updateTask(taskId, { title: toBeEditedTasks[taskId] });
+      }
       for (const taskId of toBeRemovedTasks) {
         await deleteTask(taskId);
       }
+      if (editedTaskList.date === "")
+        setEditedTaskList({ ...editedTaskList, removeDate: true });
       await updateTaskList(taskListId, editedTaskList)
       await refreshHome();
 
@@ -82,9 +94,8 @@ const TaskList = () => {
   const handleCheck = async (taskId) => {
     try {
       const task = taskList.tasks.find((task) => task._id === taskId);
+      setTaskList({ ...taskList, tasks: taskList.tasks.map((t) => t._id === taskId ? { ...t, completed: !t.completed } : t) });
       await updateTask(taskId, { completed: !task.completed });
-      const updatedTaskList = await getTaskList(taskListId);
-      setTaskList(updatedTaskList);
       await refreshHome();
     } catch (error) {
       console.error(error);
@@ -102,7 +113,6 @@ const TaskList = () => {
           editedTaskList={editedTaskList}
           setEditedTaskList={setEditedTaskList}
           handleTaskListDelete={handleTaskListDelete}
-          taskListId={taskListId}
         />
 
         <TaskListCardTasks 
@@ -114,6 +124,8 @@ const TaskList = () => {
           handleCheck={handleCheck}
           toBeRemovedTasks={toBeRemovedTasks}
           setToBeRemovedTasks={setToBeRemovedTasks}
+          toBeEditedTasks={toBeEditedTasks}
+          setToBeEditedTasks={setToBeEditedTasks}
         />
 
         <AddTaskForm 
