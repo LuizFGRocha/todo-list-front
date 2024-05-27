@@ -33,3 +33,9 @@ npm start
  ```
 
 O aplicativo ficará disponível na porta 3000 do host local.
+
+## Aplicativo no ar
+
+Foi realizado o deploy do aplicativo na Azure. Ele está acessível pelo seguinte link:
+
+[https://jolly-rock-0c17fe50f.5.azurestaticapps.net/]()
