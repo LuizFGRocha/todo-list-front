@@ -16,7 +16,7 @@ const Header = () => {
           </span>
           <button
             href="#"
-            className="text-gray-950 border-transparent bg-blue-500 dark:bg-gray-900 p-2 rounded-lg dark:hover:bg-gray-950 hover:bg-blue-600 hover:text-gray-800 transition-colors duration-300 transform dark:hover:text-gray-200 hover:border-blue-500 mx-1.5 sm:mx-6"
+            className="dark:text-gray-300 text-gray-950 border-transparent bg-blue-500 dark:bg-gray-900 p-2 rounded-lg dark:hover:bg-gray-950 hover:bg-blue-600 hover:text-gray-800 transition-colors duration-300 transform dark:hover:text-gray-200 hover:border-blue-500 mx-1.5 sm:mx-6"
             onClick={logout}
           >
             Logout
