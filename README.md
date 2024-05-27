@@ -42,3 +42,5 @@ e interagir com ele localmente, altere o endereço da api em src/api.js.
 Foi realizado o deploy do aplicativo na Azure. Ele está acessível pelo seguinte link:
 
 [https://jolly-rock-0c17fe50f.5.azurestaticapps.net/](https://jolly-rock-0c17fe50f.5.azurestaticapps.net/)
+
+Obs: o deploy foi realizado na tier grátis que oferece recursos compartilhados. Pode haver instabilidade.
