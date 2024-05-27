@@ -35,7 +35,7 @@ npm start
 O aplicativo ficará disponível na porta 3000 do host local.
 
 Obs: o aplicativo fará chamadas para o back end em nuvem. Para rodar o back end
-e interagir com ele localmente, altere o endereço da api em api.js.
+e interagir com ele localmente, altere o endereço da api em src/api.js.
 
 ## Aplicativo no ar
 
