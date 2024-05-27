@@ -22,6 +22,11 @@ const Signup = () => {
       return;
     }
 
+    if (credentials.password.length < 6) {
+      setError({message: "A senha deve ter no mínimo 6 caracteres", status: true});
+      return;
+    }
+
     try {
       await signup(credentials);
       nav("/login");
