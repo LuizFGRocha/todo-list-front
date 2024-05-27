@@ -26,6 +26,7 @@ export const AuthProvider = () => {
     if (res.status === 200 && res.data.uid) {
       setUserId(res.data.uid);
       setUsername(username);
+      localStorage.setItem('username', username);
       localStorage.setItem('userId', res.data.uid);
       nav('/');
     } else {
@@ -35,23 +36,27 @@ export const AuthProvider = () => {
 
   const logout = () => {
     localStorage.removeItem('userId');
+    localStorage.removeItem('username');
     setUserId(null);
     nav('/login');
   };
 
   useEffect(() => {
     const localUserId = localStorage.getItem('userId');
+    const localUsername = localStorage.getItem('username');
     if (localUserId === null) {
       nav('/login');
     } else {
       checkToken(localUserId).then( (res) => {
       if (res.status === 200) {
         setUserId(localUserId);
+        setUsername(localUsername);
         nav('/');
       }}).catch( (error) => {
         nav('/login');
         setUserId(null);
         localStorage.removeItem('userId');
+        localStorage.removeItem('username');
       });
     }
   }, [nav, userId]);
