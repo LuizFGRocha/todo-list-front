@@ -39,24 +39,22 @@ export const AuthProvider = () => {
     nav('/login');
   };
 
-  useEffect(() => async () => {
+  useEffect(() => {
     const localUserId = localStorage.getItem('userId');
     if (localUserId === null) {
       nav('/login');
     } else {
-      try {
-        const res = await checkToken(localUserId);
-        if (res.status === 200) {
-          setUserId(localUserId);
-          nav('/');
-        }
-      } catch (error) {
+      checkToken(localUserId).then( (res) => {
+      if (res.status === 200) {
+        setUserId(localUserId);
+        nav('/');
+      }}).catch( (error) => {
         nav('/login');
         setUserId(null);
         localStorage.removeItem('userId');
-      }
+      });
     }
-  }, [nav]);
+  }, [nav, userId]);
 
   return (
     <AuthContext.Provider value={{ userId, login, logout, username }}>
