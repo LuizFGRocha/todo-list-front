@@ -35,7 +35,7 @@ const Home = () => {
   }
 
   return (
-    <div className="relative z-0 min-h-screen dark:bg-gray-900">
+    <div className="relative z-0 min-h-screen bg-blue-100 dark:bg-gray-900">
 
       {/* Header */}
       <Header />

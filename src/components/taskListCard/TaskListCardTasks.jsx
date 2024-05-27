@@ -24,7 +24,7 @@ const TaskListCardTasks = ({
               {task.completed ? "✅ " : "❌ "}
             </button>
             <h1
-              className="text-gray-300 rounded-md outline-none pt-1 pr-2"
+              className="text-gray-800 dark:text-gray-300 rounded-md outline-none pt-1 pr-2"
               hidden={editMode}
             >
               {task.title}
@@ -39,8 +39,8 @@ const TaskListCardTasks = ({
                 xmlns="http://www.w3.org/2000/svg"
                 width="15"
                 height="15"
-                fill="rgb(156 163 175)"
                 viewBox="0 0 16 16"
+                className="fill-gray-500 dark:fill-gray-300"
               >
                 <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
               </svg>
@@ -48,7 +48,7 @@ const TaskListCardTasks = ({
 
             <input 
               hidden={!editMode}
-              className="text-gray-300 rounded-md outline-none pt-1 pr-2 bg-transparent w-full"
+              className="text-gray-800 dark:text-gray-300 rounded-md outline-none pt-1 pr-2 bg-transparent w-full"
               value={toBeEditedTasks[task._id] || task.title}
               onChange={(e) => setToBeEditedTasks({ ...toBeEditedTasks, [task._id]: e.target.value })}
               style={{

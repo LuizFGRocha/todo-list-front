@@ -11,8 +11,8 @@ const TaskListMiniCardHeader = ({ name, date, description }) => {
 
   return (
     <div>
-      <div className="flex pr-7 py-3 bg-gray-800 flex-col">
-        <h1 className="text-2xl pl-6 font-semibold text-gray-300 truncate">{name}</h1>
+      <div className="flex pr-7 py-3 bg-blue-300 dark:bg-gray-800 flex-col">
+        <h1 className="text-2xl pl-6 font-semibold text-gray-900 dark:text-gray-300 truncate">{name}</h1>
         <h1 className="text-md text-gray-800 dark:text-gray-200 px-6 truncate">
           {description}
         </h1>

@@ -4,7 +4,7 @@ import TaskListMiniCardTasks from "./TaskListMiniCardTasks";
 const TaskCard = ({ taskList }) => {
 
   return (
-    <div className="w-72 overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-700 h-80 border border-gray-700">
+    <div className="w-72 overflow-hidden bg-blue-200 rounded-lg shadow-lg dark:bg-gray-700 h-80 border border-gray-700">
 
       <TaskListMiniCardHeader 
         name={taskList.name}

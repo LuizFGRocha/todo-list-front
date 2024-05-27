@@ -28,7 +28,7 @@ const CreateTaskListCardForm = ({ onSubmit }) => {
   }
 
   return (
-    <form className="p-5 text-gray-300">
+    <form className="p-5 text-gray-800 dark:text-gray-300">
 
       <div className="flex flex-col gap-3">
 
@@ -37,7 +37,7 @@ const CreateTaskListCardForm = ({ onSubmit }) => {
           placeholder="Nome da lista" 
           aria-label="Nome da lista"
           onChange={(e) => setTaskListData({ ...taskListData, name: e.target.value })}
-          className="bg-transparent text-clip text-2xl"
+          className="bg-transparent text-clip text-2xl placeholder-gray-800 dark:placeholder-gray-300"
         />
 
         <textarea
@@ -45,7 +45,7 @@ const CreateTaskListCardForm = ({ onSubmit }) => {
           placeholder="Descrição da lista" 
           aria-label="Descrição da lista"
           onChange={(e) => setTaskListData({ ...taskListData, description: e.target.value })}
-          className="bg-transparent text-clip text-lg"
+          className="bg-transparent text-clip text-lg placeholder-gray-800 dark:placeholder-gray-300"
         />
 
         <div className="flex flex-row gap-2">
@@ -59,13 +59,13 @@ const CreateTaskListCardForm = ({ onSubmit }) => {
           placeholder="Data da lista" 
           aria-label="Data da lista"
           onChange={(e) => setTaskListData({ ...taskListData, date: e.target.value })}
-          className="bg-transparent"
+          className="bg-transparent placeholder-gray-800 dark:placeholder-gray-300"
           hidden={!usingDate}
         />
 
         <button 
           onClick={(e) => handleTaskListCreate({ ...taskListData, date: (usingDate ? taskListData.date : null) }, e)} 
-          className="bg-gray-900 p-2 rounded-md hover:bg-gray-950">
+          className="dark:bg-gray-900 bg-blue-400 p-2 rounded-md dark:hover:bg-gray-950">
             Criar
         </button>
 

@@ -4,7 +4,7 @@ const TaskListMiniCardTasks = ({ tasks }) => {
       <ol>
         {tasks.sort((a, b) => a._id.localeCompare(b._id)).map((task) => {
           return (
-            <li className="text-gray-300 truncate" key={task._id}>
+            <li className="text-gray-800 dark:text-gray-300 truncate" key={task._id}>
               {task.completed ? "✅ " : "❌ "}
               {task.title}
             </li>

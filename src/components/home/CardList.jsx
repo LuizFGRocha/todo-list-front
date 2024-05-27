@@ -4,7 +4,7 @@ import TaskListMiniCard from '../taskListMiniCard/TaskListMiniCard';
 const CardList = ({ taskLists }) => {
   return (
     <ul 
-      className="flex flex-row justify-center flex-wrap p-5 m-auto bg-gray-900"
+      className="flex flex-row justify-center flex-wrap p-5 m-auto"
       style={{maxWidth: "1500px"}}
     > {
       taskLists.map((taskList) => {

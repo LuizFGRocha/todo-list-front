@@ -21,13 +21,13 @@ const Login = () => {
   };
 
   return (
-    <div className="flex h-screen bg-white dark:bg-gray-900">
-      <div className="w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800 m-auto">
-        <div className="flex justify-center"><h1 className="text-gray-500 dark:text-gray-400 mx-auto text-5xl font-semibold pt-4">ToDo List</h1></div>
+    <div className="flex h-screen bg-blue-100 dark:bg-gray-900">
+      <div className="w-full max-w-sm mx-auto overflow-hidden bg-blue-200 rounded-lg shadow-md dark:bg-gray-800 m-auto">
+        <div className="flex justify-center"><h1 className="text-gray-700 dark:text-gray-400 mx-auto text-5xl font-semibold pt-4">ToDo List</h1></div>
         <div className="px-6 py-4">
           <div className="flex justify-center mx-auto">
           </div>
-          <p className="mt-1 text-center text-gray-500 dark:text-gray-400">
+          <p className="mt-1 text-center text-gray-600 dark:text-gray-400">
             Entre ou crie uma conta.
           </p>
           <form>
@@ -62,13 +62,13 @@ const Login = () => {
             </div>
           </form>
         </div>
-        <div className="flex items-center justify-center py-4 text-center bg-gray-50 dark:bg-gray-700">
-          <span className="text-sm text-gray-600 dark:text-gray-200">
+        <div className="flex items-center justify-center py-4 text-center bg-blue-300 dark:bg-gray-700">
+          <span className="text-sm text-gray-700 dark:text-gray-200">
             Não tem uma conta?{" "}
           </span>
           <Link
             to="/register"
-            className="mx-2 text-sm font-bold text-blue-500 dark:text-blue-400 hover:underline"
+            className="mx-2 text-sm font-bold text-blue-600 dark:text-blue-400 hover:underline"
           >
             Criar conta
           </Link>
