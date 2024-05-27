@@ -7,6 +7,7 @@ const TaskListCardHeader = ({
   editedTaskList,
   setEditedTaskList,
   handleTaskListDelete,
+  loadedData
 }) => {
   const formatDate = (date) => {
     date = new Date(date);
@@ -65,7 +66,7 @@ const TaskListCardHeader = ({
                 new Date(taskList.date) > new Date() ? "transparent" : "#610000",
               padding: new Date(taskList.date) > new Date() ? "0rem" : "0.25rem",
             }}
-            hidden={taskList.date == null || editMode}
+            hidden={taskList.date == null || editMode || !loadedData}
           >
             {formatDate(taskList.date)}
           </h1>

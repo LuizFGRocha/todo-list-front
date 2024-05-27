@@ -21,6 +21,7 @@ const TaskList = () => {
   const [ newTask, setNewTask ] = useState({ title: "", completed: false });
   const [ toBeRemovedTasks, setToBeRemovedTasks ] = useState([]);
   const [ toBeEditedTasks, setToBeEditedTasks ] = useState({});
+  const [ loadedData, setLoadedData ] = useState(false);
 
   const nav = useNavigate();
 
@@ -31,6 +32,8 @@ const TaskList = () => {
         setEditedTaskList(taskLists);
         if (!taskLists.date)
           setEditedTaskList({ ...taskLists, removeDate: true });
+
+        setLoadedData(true);
       });
     } catch (error) {
       console.error(error);
@@ -104,7 +107,10 @@ const TaskList = () => {
 
   return (
     <div className="backdrop-blur-sm w-svw h-svh flex items-center justify-center min-h-screen">
-      <div className="w-svw md:w-6/12 overflow-scroll bg-white rounded-lg shadow-lg dark:bg-gray-800 min-h-80 relative z-0 border border-gray-700" style={{maxHeight: "80svh"}}>
+      <div 
+        className="w-svw md:w-6/12 overflow-scroll bg-white rounded-lg shadow-lg dark:bg-gray-800 min-h-80 relative z-0 border border-gray-700"
+        style={{scrollbarWidth: "none", maxHeight: "80svh"}}
+      >
 
         <TaskListCardHeader 
           editMode={editMode}
@@ -113,6 +119,7 @@ const TaskList = () => {
           editedTaskList={editedTaskList}
           setEditedTaskList={setEditedTaskList}
           handleTaskListDelete={handleTaskListDelete}
+          loadedData={loadedData}
         />
 
         <TaskListCardTasks 
