@@ -10,6 +10,7 @@ export const useSessionContext = () => useContext(AuthContext);
 
 export const AuthProvider = () => {
   const [ userId, setUserId ] = useState(null);
+  const [ username, setUsername ] = useState(null);
 
   const nav = useNavigate();
 
@@ -24,6 +25,7 @@ export const AuthProvider = () => {
 
     if (res.status === 200 && res.data.uid) {
       setUserId(res.data.uid);
+      setUsername(username);
       localStorage.setItem('userId', res.data.uid);
       nav('/');
     } else {
@@ -32,6 +34,7 @@ export const AuthProvider = () => {
   };
 
   const logout = () => {
+    localStorage.removeItem('userId');
     setUserId(null);
     nav('/login');
   };
@@ -56,7 +59,7 @@ export const AuthProvider = () => {
   }, [nav]);
 
   return (
-    <AuthContext.Provider value={{ userId, login, logout }}>
+    <AuthContext.Provider value={{ userId, login, logout, username }}>
       <ErrorBoundary logout={logout} nav={nav}>
         <Outlet />
       </ErrorBoundary>
