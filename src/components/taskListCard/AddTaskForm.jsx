@@ -17,7 +17,7 @@ const AddTaskForm = ({ setAddingTask, addingTask, newTask, setNewTask, handleIns
             Cancelar
         </button>
         <button 
-          className="px-2 text-gray-800 bg-blue-300 dark:bg-gray-900 rounded-md hover:dark:bg-gray-900"
+          className="px-2 text-gray-800 dark:text-gray-300 bg-blue-300 dark:bg-gray-900 rounded-md hover:dark:bg-gray-900"
           onClick={(e) => handleInsert(e)}>
             Inserir
         </button>
