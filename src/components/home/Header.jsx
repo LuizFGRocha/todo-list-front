@@ -8,7 +8,7 @@ const Header = () => {
         <h1
           className="text-gray-800 text-2xl text-bold transition-colors duration-300 transform dark:text-gray-200 mx-1.5 sm:mx-6"
         >
-          To Do
+          To Do List
         </h1>
         <div>
           <span className="text-gray-800 transition-colors duration-300 transform dark:text-gray-200 mx-1.5 sm:mx-6 text-lg">
