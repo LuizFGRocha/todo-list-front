@@ -34,6 +34,9 @@ npm start
 
 O aplicativo ficará disponível na porta 3000 do host local.
 
+Obs: o aplicativo fará chamadas para o back end em nuvem. Para rodar o back end
+e interagir com ele localmente, altere o endereço da api em api.js.
+
 ## Aplicativo no ar
 
 Foi realizado o deploy do aplicativo na Azure. Ele está acessível pelo seguinte link:
