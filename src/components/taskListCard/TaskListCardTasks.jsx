@@ -1,3 +1,5 @@
+import { CheckedCheckBox, UncheckedCheckBox } from "../utils/CheckBox";
+
 const TaskListCardTasks = ({
   tasks,
   toBeRemovedTasks,
@@ -21,7 +23,7 @@ const TaskListCardTasks = ({
         return (
           <li key={task._id} className="flex flex-row justify-start w-full">
             <button className="m-1" onClick={() => handleCheck(task._id)}>
-              {task.completed ? "✅ " : "❌ "}
+              {task.completed ? <CheckedCheckBox /> : <UncheckedCheckBox />}
             </button>
             <h1
               className="text-gray-800 dark:text-gray-300 rounded-md outline-none pt-1 pr-2"
