@@ -64,7 +64,10 @@ const TaskList = () => {
   const handleEdit = async (e) => {
     try {
       for (const taskId in toBeEditedTasks) {
-        await updateTask(taskId, { title: toBeEditedTasks[taskId] });
+        if (toBeEditedTasks[taskId] === "")
+          await deleteTask(taskId);
+        else
+          await updateTask(taskId, { title: toBeEditedTasks[taskId] });
       }
       for (const taskId of toBeRemovedTasks) {
         await deleteTask(taskId);

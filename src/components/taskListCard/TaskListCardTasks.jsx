@@ -49,7 +49,7 @@ const TaskListCardTasks = ({
             <input 
               hidden={!editMode}
               className="text-gray-800 dark:text-gray-300 rounded-md outline-none pt-1 pr-2 bg-transparent w-full"
-              value={toBeEditedTasks[task._id] || task.title}
+              value={(task._id in toBeEditedTasks) ? toBeEditedTasks[task._id] : task.title}
               onChange={(e) => setToBeEditedTasks({ ...toBeEditedTasks, [task._id]: e.target.value })}
               style={{
                 textDecoration: toBeRemovedTasks.includes(task._id)
