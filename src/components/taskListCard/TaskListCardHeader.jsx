@@ -127,10 +127,7 @@ const TaskListCardHeader = ({
             setEditMode(!editMode);
           }}
           aria-label="Editar"
-          className="px-3 rounded-md"
-          style={{
-            backgroundColor: editMode ? "rgb(31 41 55)" : "transparent",
-          }}
+          className={`px-3 rounded-md ${editMode ? "dark:bg-gray-800 bg-blue-200" : "bg-transparent"}`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
