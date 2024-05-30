@@ -17,7 +17,7 @@ const TaskListMiniCardHeader = ({ name, date, description }) => {
           {description}
         </h1>
         <h1 
-          className="text-md text-gray-800 dark:text-gray-300 text-semibold p-1 px-2 mx-4 rounded-md w-fit" 
+          className={`text-md text-semibold p-1 px-2 mx-4 rounded-md w-fit ${new Date(date) > new Date() ? 'text-gray-800 dark:text-gray-300' : 'text-gray-300'}`} 
           style={
             {
               backgroundColor: (new Date(date) > new Date()) ? 'transparent' : '#610000',

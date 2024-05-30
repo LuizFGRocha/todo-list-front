@@ -60,7 +60,7 @@ const TaskListCardHeader = ({
 
         <div className="flex flex-row gap-2">
           <h1
-            className="text-md text-gray-400 text-semibold rounded-md w-fit"
+            className={`text-md text-semibold rounded-md w-fit ${new Date(taskList.date) > new Date() ? 'text-gray-800 dark:text-gray-300' : 'text-gray-300'}`}
             style={{
               backgroundColor:
                 new Date(taskList.date) > new Date() ? "transparent" : "#610000",
